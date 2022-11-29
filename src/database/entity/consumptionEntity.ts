@@ -1,9 +1,9 @@
 import { userInfo } from 'os';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User as userEntity } from "../entity/userEntity";
+import { User as userEntity } from "./userEntity";
 
 @Entity()
-export class User{
+export class ConsumptionEntity{
 
     //Keys
     @PrimaryGeneratedColumn()
@@ -13,7 +13,10 @@ export class User{
     idUser : number;
 
     //Columns
+    @Column()
     date : Date;
+
+    @Column()
     consumption : number;
    
 

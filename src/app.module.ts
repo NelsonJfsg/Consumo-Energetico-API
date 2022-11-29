@@ -8,6 +8,7 @@ import { connection } from './database/dbConfig';
   imports: [
     ConsumptionModule,
     UserModule,
+    ConsumptionModule,
     connection,
   ],
   controllers: [
