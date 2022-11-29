@@ -2,7 +2,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 
 //My imports
-import { User } from 'src/database/entity/user';
+import { User } from 'src/database/entity/userEntity';
 import { UserService } from './user.service';
 
 @Controller('api/user')
@@ -25,6 +25,6 @@ export class UserController {
         this.userService.createAnUser(user);
     }
 
-
+    
 
 }

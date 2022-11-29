@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm'
 
 //My imports
-import { User, User as userEntity } from 'src/database/entity/user';
+import { User, User as userEntity } from 'src/database/entity/userEntity';
 
 
 @Injectable()

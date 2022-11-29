@@ -2,7 +2,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 //My imports.
-import { User } from './entity/user';
+import { User } from './entity/userEntity';
 
 
 export const connection = TypeOrmModule.forRoot({
