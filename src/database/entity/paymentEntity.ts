@@ -1,23 +1,23 @@
-import { userInfo } from 'os';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { ConsumptionEntity } from './consumptionEntity';
 import { User as userEntity } from "./userEntity";
 
 @Entity()
-export class ConsumptionEntity{
+export class PaymentEntity{
 
     //Keys
     @PrimaryGeneratedColumn()
     id : number;
 
-    @ManyToOne( (user) => userEntity) //Foreign
-    idUser : userEntity[];
-
-    //Columns
+    @ManyToOne( (consumption) => ConsumptionEntity)
+    idConsumption : ConsumptionEntity[];
+    
     @Column()
-    date : Date;
-
+    total : number;
+    
     @Column()
-    consumption : number;
+    paid : number;
+    
    
 
 }

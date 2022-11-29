@@ -1,4 +1,4 @@
-export interface Consumption{
+export interface consumptionModel{
 
     //Atributes
     id : number;

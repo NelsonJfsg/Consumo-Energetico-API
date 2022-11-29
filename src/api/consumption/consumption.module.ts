@@ -9,6 +9,6 @@ import { ConsumptionEntity } from "../../database/entity/consumptionEntity";
 @Module({
     imports: [TypeOrmModule.forFeature([ConsumptionEntity])],
     controllers: [ConsumptionController],
-    providers: [ConsumptionService,],
+    providers: [ConsumptionService],
 })
 export class ConsumptionModule { }
