@@ -1,6 +1,6 @@
 import { userInfo } from 'os';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User as userEntity } from "./userEntity";
+import { UserEntity as userEntity } from "./userEntity";
 
 @Entity()
 export class ConsumptionEntity{
@@ -19,4 +19,5 @@ export class ConsumptionEntity{
     @Column({type : "double"})
     consumption : number;
    
+
 }

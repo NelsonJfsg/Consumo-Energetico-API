@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
 import { PaymentEntity } from 'src/database/entity/paymentEntity';
-import { User } from 'src/database/entity/userEntity';
+import { UserEntity } from 'src/database/entity/userEntity';
 import { PaymentModel } from 'src/model/paymentModel';
 import { Repository } from 'typeorm';
 
@@ -17,8 +17,6 @@ export class PaymentService {
     Pero si el cliente tiene mas de 50 años su consumo tiene un 10% de descuento.
     */
    
-
-
     constructor(@InjectRepository(PaymentEntity) private paymentModel : Repository<PaymentModel>){
 
     }

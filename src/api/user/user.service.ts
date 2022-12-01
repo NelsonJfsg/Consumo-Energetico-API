@@ -4,7 +4,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm'
 
 //My imports
-import { User, User as userEntity } from 'src/database/entity/userEntity';
+import { UserEntity, UserEntity as userEntity } from 'src/database/entity/userEntity';
+import { UserModel } from 'src/model/create-user.dto';
+import { response } from 'express';
 
 @Injectable()
 export class UserService {
@@ -16,10 +18,10 @@ export class UserService {
     }
 
     //send information to db with user data.
-    async createAnUser(user : User){
+    async createAnUser(user : UserEntity){
 
         //user recolected of db
-        let dbUser : User = await this.userExists(user);
+        let dbUser : UserEntity = await this.userExists(user);
         
         //check if user is null.
         if(dbUser){
@@ -34,11 +36,40 @@ export class UserService {
     }
 
     //Check if the email of user is in db data.
-    async userExists(user : User) : Promise<User>{
+    async userExists(user : UserEntity) : Promise<UserEntity>{
 
         return await this.userEntity.findOneBy({
             email : user.email
         });
         
+    }
+    
+    async getAge(user : UserModel){
+
+        let id;
+
+        id = await this.getId(user);
+        let query : string = `SELECT email, birthDay, CURDATE(),TIMESTAMPDIFF(YEAR,birthDay,CURDATE()) AS age FROM user_entity WHERE id = '${id}';`;
+
+        console.log(id);
+        this.userEntity.query(query)
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
+    }
+
+    async getId(user : UserModel) : Promise<number>{
+
+        let id;
+        let query = `SELECT id FROM user_entity WHERE email = '${user.email}'`;
+        
+        await this.userEntity.query(query)
+        .then((response => {
+            const [thisId] = response;
+            id = thisId.id;
+        }))
+        .catch(err => console.log(err));
+        
+        return id;
+
     }
 }

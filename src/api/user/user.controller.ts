@@ -1,11 +1,12 @@
+import { UserModel } from '../../model/create-user.dto';
 //Nest imports
 import { Controller, Post, Body } from '@nestjs/common';
 
 //My imports
-import { User } from 'src/database/entity/userEntity';
+import { UserEntity } from 'src/database/entity/userEntity';
 import { UserService } from './user.service';
 
-//Lets code.
+
 @Controller('api/user')
 export class UserController {
 
@@ -16,13 +17,22 @@ export class UserController {
 
     //Create user
     @Post('/create-user')
-    createUser(@Body() user : User){
+    createUser(@Body() user : UserModel){
         this.userService.createAnUser(user);
     }
 
     @Post('/user-exists')
-    checkUser(@Body() user : User){
+    checkUser(@Body() user : UserModel){
         this.userService.userExists(user);
     }
 
+    @Post('/get-age')
+    getAge(@Body() user : UserModel){
+        this.userService.getAge(user);
+    }
+
+    @Post('/get-id')
+    getId(@Body() user : UserModel){
+        this.userService.getId(user);
+    }
 }

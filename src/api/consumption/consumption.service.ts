@@ -6,8 +6,9 @@ import { Double, Repository } from 'typeorm';
 
 //My imports
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
-import { User } from 'src/database/entity/userEntity';
+import { UserEntity } from 'src/database/entity/userEntity';
 import { consumptionModel } from 'src/model/consumptionModel';
+import { UserModel } from 'src/model/create-user.dto';
 
 @Injectable()
 export class ConsumptionService { 
@@ -16,7 +17,7 @@ export class ConsumptionService {
         
     }
 
-    addConsume(consumption : consumptionModel){
+    registConsumption(consumption : consumptionModel){
 
         this.consumptionEntity.insert(consumption)
         .then((response) => {
@@ -25,14 +26,11 @@ export class ConsumptionService {
 
     }
 
-    async getAge(thisId : number) : Promise<ConsumptionEntity>{
+    async getConsumptionFromId(thisId : number) : Promise<ConsumptionEntity>{
         return await this.consumptionEntity.findOneBy({
             id : thisId
         }).then();
     }
 
-    async getTotalConsumeOfClient(){
-        this.consumptionEntity.query("SELECT name, birthDay, CURDATE(),TIMESTAMPDIFF(YEAR,birthDay,CURDATE()) AS age FROM user;").then(response => console.log(response));
-    }
 
 }

@@ -4,7 +4,7 @@ import { ConsumptionEntity } from './entity/consumptionEntity';
 import { PaymentEntity } from './entity/paymentEntity';
 
 //My imports.
-import { User } from './entity/userEntity';
+import { UserEntity } from './entity/userEntity';
 
 
 export const connection = TypeOrmModule.forRoot({
@@ -15,7 +15,7 @@ export const connection = TypeOrmModule.forRoot({
     username : 'root',
     password : '',
     database : 'energydb',
-    entities : [User, ConsumptionEntity, PaymentEntity],
+    entities : [UserEntity, ConsumptionEntity, PaymentEntity],
     synchronize : true,
 
 });

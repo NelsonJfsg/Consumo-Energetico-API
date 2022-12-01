@@ -1,6 +1,7 @@
 //Nest imports
 import { Body, Controller, Post } from '@nestjs/common';
 import { consumptionModel } from 'src/model/consumptionModel';
+import { UserModel } from 'src/model/create-user.dto';
 import { ConsumptionService } from './consumption.service';
 
 @Controller('api/consumption')
@@ -11,14 +12,11 @@ export class ConsumptionController {
 
     }
 
-    @Post("/regist")
+
+    @Post("/regist-consumption")
     addConsume(@Body() consumption : consumptionModel){
-        this.consumptionService.addConsume(consumption);
+        this.consumptionService.registConsumption(consumption);
     }
 
     
-    @Post('/user')
-    getAllUsers(){
-        this.consumptionService.getTotalConsumeOfClient();
-    }
 }

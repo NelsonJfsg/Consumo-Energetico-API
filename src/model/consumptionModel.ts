@@ -1,4 +1,4 @@
-import { User } from "./userModel";
+import { UserModel } from "./userModel";
 
 export interface consumptionModel{
 
