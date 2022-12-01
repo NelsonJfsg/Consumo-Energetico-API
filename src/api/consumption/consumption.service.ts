@@ -1,10 +1,13 @@
+//Nest
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { response } from 'express';
+import { Double, Repository } from 'typeorm';
+
+//My imports
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
 import { User } from 'src/database/entity/userEntity';
 import { consumptionModel } from 'src/model/consumptionModel';
-import { Double, Repository } from 'typeorm';
 
 @Injectable()
 export class ConsumptionService { 
