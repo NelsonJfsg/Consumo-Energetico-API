@@ -13,8 +13,8 @@ export class ConsumptionEntity{
     idUser : userEntity[];
 
     //Columns
-    @Column()
-    date : Date;
+    @Column({type : "date"})
+    date : string;
 
     @Column()
     consumption : number;

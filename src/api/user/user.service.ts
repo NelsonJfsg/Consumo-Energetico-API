@@ -9,10 +9,13 @@ import { User, User as userEntity } from 'src/database/entity/userEntity';
 @Injectable()
 export class UserService {
 
+    //Pending : validate date format in json.
+
     constructor(@InjectRepository(userEntity) private userEntity : Repository<userEntity>){
 
     }
 
+    //send information to db with user data.
     async createAnUser(user : User){
 
         //user recolected of db
@@ -20,11 +23,11 @@ export class UserService {
         
         //check if user is null.
         if(dbUser){
-            console.log("user exists, please add another email.");
+            console.log("user exists, please change email.");
         }else{
-            console.log("No existe");
+            console.log("User doesnt exists. You can use this email.");
             this.userEntity.insert(user)
-            .then(response => console.log(response))
+            .then(response => console.log(response.identifiers))
             .catch(err => console.log(err));
         }
 
