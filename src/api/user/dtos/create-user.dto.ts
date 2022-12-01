@@ -1,6 +1,6 @@
 import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate } from "class-validator";
 export class CreateUserDto{
-    @IsNumber()
+
     id : number;
 
     @IsString()
@@ -14,6 +14,6 @@ export class CreateUserDto{
 
     addres : string;
 
-    @IsDate()
+    @IsString()
     birthDay : Date;
 }
