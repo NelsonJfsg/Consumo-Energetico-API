@@ -12,11 +12,11 @@ export class PaymentEntity{
     @ManyToOne( (consumption) => ConsumptionEntity)
     idConsumption : ConsumptionEntity[];
     
-    @Column()
+    @Column({type : "double"})
     total : number;
     
     @Column()
-    paid : number;
+    paid : boolean;
     
 
 }

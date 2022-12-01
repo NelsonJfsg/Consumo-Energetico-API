@@ -18,7 +18,7 @@ export class User{
     @Column()
     addres : string;
 
-    @Column()
+    @Column({type : "date"})
     birthDay : Date;
 
 }

@@ -25,9 +25,32 @@ export class PaymentService {
 
     payAnConsumption(payment : PaymentModel){
 
+        let consumption = 2;
+        let edad = 0;
+
+
+
+        if(consumption >= 100){
+            consumption *= 150;
+        }else{
+            if(consumption >= 101 && consumption <= 300){
+                consumption *= 170
+            }else{
+                if(consumption > 300){
+                    consumption *= 190;
+                }
+            }
+        }
+
+        if(edad > 50){
+            consumption *= 0.90;
+        }
+
+
         return this.paymentModel.insert(payment);
 
     }
+
 
 
 

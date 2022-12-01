@@ -16,5 +16,8 @@ export class ConsumptionController {
     }
 
     
-
+    @Post('/user')
+    getAllUsers(){
+        this.consumptionService.getTotalConsumeOfClient();
+    }
 }

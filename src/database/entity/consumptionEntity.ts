@@ -16,8 +16,7 @@ export class ConsumptionEntity{
     @Column({type : "date"})
     date : string;
 
-    @Column()
+    @Column({type : "double"})
     consumption : number;
    
-
 }
