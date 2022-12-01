@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { IsInt, IsEmail, isDate, isInt, isEmail, isNumber } from "class-validator";
+import { IsInt, IsEmail, isDate, isInt, isEmail, isNumber, MinLength } from "class-validator";
 
 @Entity()
 export class User{
@@ -17,6 +17,7 @@ export class User{
     phoneNumber : string;
     
     @Column()
+    @MinLength(2)
     addres : string;
 
     @Column()

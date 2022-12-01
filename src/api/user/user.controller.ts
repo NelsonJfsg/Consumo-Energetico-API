@@ -1,4 +1,4 @@
-import { CreateUserDto } from './dtos/create-user.dto';
+import { CreateUserDto } from '../../model/create-user.dto';
 //Nest imports
 import { Controller, Post, Body } from '@nestjs/common';
 
