@@ -18,6 +18,5 @@ export class PaymentEntity{
     @Column()
     paid : number;
     
-   
 
 }

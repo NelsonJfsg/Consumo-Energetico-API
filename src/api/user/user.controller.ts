@@ -5,6 +5,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { User } from 'src/database/entity/userEntity';
 import { UserService } from './user.service';
 
+//Lets code.
 @Controller('api/user')
 export class UserController {
 
@@ -13,18 +14,15 @@ export class UserController {
 
     }
 
-    //Test
-    @Post('/sayHi')
-    sayHi(){
-        this.userService.sayHi();
-    }
-
     //Create user
-    @Post('/createUser')
+    @Post('/createuser')
     createUser(@Body() user : User){
         this.userService.createAnUser(user);
     }
 
-    
+    @Post('/user-exists')
+    checkUser(@Body() user : User){
+        this.userService.userExists(user);
+    }
 
 }

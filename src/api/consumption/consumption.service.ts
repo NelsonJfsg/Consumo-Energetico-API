@@ -8,11 +8,14 @@ import { Repository } from 'typeorm';
 export class ConsumptionService { 
 
     constructor(@InjectRepository(ConsumptionEntity) private consumptionEntity : Repository<consumptionModel>){
-
+        
     }
 
     addConsume(consumption : consumptionModel){
-        this.consumptionEntity.insert(consumption);
+        this.consumptionEntity.insert(consumption)
+        .then((response) => {
+            console.log(response);
+        });
     }
 
 

@@ -16,6 +16,6 @@ export class ConsumptionController {
         this.consumptionService.addConsume(consumption);
     }
 
-
+    
 
 }

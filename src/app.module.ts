@@ -9,8 +9,8 @@ import { connection } from './database/dbConfig';
 @Module({
   imports: [
     UserModule,
-    ConsumptionModule,
-    PaymentModule,
+    //ConsumptionModule,
+    //PaymentModule,
     connection,
   ],
   controllers: [

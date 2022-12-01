@@ -21,6 +21,4 @@ export class User{
     @Column()
     birthDay : Date;
 
-   
-
 }
