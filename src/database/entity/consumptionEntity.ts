@@ -9,8 +9,8 @@ export class ConsumptionEntity{
     @PrimaryGeneratedColumn()
     id : number;
 
-    @ManyToOne( (role) => userEntity) //Foreign
-    idUser : number;
+    @ManyToOne( (user) => userEntity) //Foreign
+    idUser : userEntity[];
 
     //Columns
     @Column()
