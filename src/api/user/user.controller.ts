@@ -1,6 +1,6 @@
 import { UserModel } from '../../model/create-user.dto';
 //Nest imports
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 
 //My imports
 import { UserEntity } from 'src/database/entity/userEntity';
@@ -18,21 +18,31 @@ export class UserController {
     //Create user
     @Post('/create-user')
     createUser(@Body() user : UserModel){
-        this.userService.createAnUser(user);
+        return this.userService.createAnUser(user);
     }
 
     @Post('/user-exists')
     checkUser(@Body() user : UserModel){
-        this.userService.userExists(user);
+        return this.userService.userExists(user);
     }
 
     @Post('/get-age')
     getAge(@Body() user : UserModel){
-        this.userService.getAge(user);
+        return this.userService.getAge(user);
     }
 
     @Post('/get-id')
     getId(@Body() user : UserModel){
-        this.userService.getId(user);
+        return this.userService.getId(user);
+    }
+
+    @Get('/get-all-users')
+    getAllUsers(){
+        return this.userService.getAllUser();
+    }
+
+    @Post('/get-name')
+    getName(@Body() user : UserModel){
+        return this.userService.getName(user);
     }
 }

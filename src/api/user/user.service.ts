@@ -6,7 +6,7 @@ import { Repository } from 'typeorm'
 //My imports
 import { UserEntity, UserEntity as userEntity } from 'src/database/entity/userEntity';
 import { UserModel } from 'src/model/create-user.dto';
-import { response } from 'express';
+import { query, response } from 'express';
 
 @Injectable()
 export class UserService {
@@ -71,5 +71,28 @@ export class UserService {
         
         return id;
 
+    }
+
+    async getAllUser(){
+
+
+        this.userEntity.find({
+            select : ['email','addres'],
+        })
+        .then(response => console.log(response));
+
+
+        /*
+        let query = 'SELECT * FROM user_entity';
+        this.userEntity.query(query)
+        .then(response => console.log(response));
+        */
+
+    }
+
+    async getName(user : UserModel) {
+        return await this.userEntity.find({
+            select : ['id', 'name', 'email', 'addres', 'phoneNumber', 'birthDay']
+        });
     }
 }
