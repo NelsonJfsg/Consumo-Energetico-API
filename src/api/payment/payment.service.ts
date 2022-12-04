@@ -50,7 +50,36 @@ export class PaymentService {
     }
 
 
+    async getAllPaids(){
 
 
+        this.paymentModel.find({
+            select : ['id','idConsumption','paid','total'],
+            where : { paid : true
+            },
+        })
+        .then(response => console.log(response));
+    }
 
+    async getAllNoPaids(){
+
+
+        this.paymentModel.find({
+            select : ['id','idConsumption','paid','total'],
+            where : { paid : false
+            },
+        })
+        .then(response => console.log(response));
+    }
+
+    async getAllPaidsASC(){
+
+
+        this.paymentModel.find({
+            select : ['id','idConsumption','paid','total'],
+            order : { paid : "ASC"
+            },
+        })
+        .then(response => console.log(response));
+    }
 }

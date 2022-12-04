@@ -1,5 +1,5 @@
 //Nest imports
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post,Get } from '@nestjs/common';
 import { consumptionModel } from 'src/model/consumptionModel';
 import { UserModel } from 'src/model/create-user.dto';
 import { ConsumptionService } from './consumption.service';
@@ -16,6 +16,11 @@ export class ConsumptionController {
     @Post("/regist-consumption")
     addConsume(@Body() consumption : consumptionModel){
         this.consumptionService.registConsumption(consumption);
+    }
+
+    @Get('/get-max-min-consumption')
+    getMinMaxConsumption(){
+        return this.consumptionService.getMinMaxConsumption();
     }
 
     

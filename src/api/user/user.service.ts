@@ -7,6 +7,7 @@ import { Repository } from 'typeorm'
 import { UserEntity, UserEntity as userEntity } from 'src/database/entity/userEntity';
 import { UserModel } from 'src/model/create-user.dto';
 import { query, response } from 'express';
+import { Console } from 'console';
 
 @Injectable()
 export class UserService {
@@ -77,7 +78,7 @@ export class UserService {
 
 
         this.userEntity.find({
-            select : ['email','addres'],
+            select : ['id','email','addres','name','phoneNumber','birthDay'],
         })
         .then(response => console.log(response));
 
@@ -94,5 +95,18 @@ export class UserService {
         return await this.userEntity.find({
             select : ['id', 'name', 'email', 'addres', 'phoneNumber', 'birthDay']
         });
+    }
+
+    //-------test para el min y max 
+    
+    async getMinUser(){
+        
+        let query = 'SELECT * FROM user_entity where id = (select max(id) from user_entity);';
+        this.userEntity.query(query)
+        .then(response => console.log("MAX ",response));
+        query = 'SELECT * FROM user_entity where id = (select min(id) from user_entity);';
+        this.userEntity.query(query)
+        .then(response => console.log("MIN", response));
+
     }
 }

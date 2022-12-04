@@ -45,4 +45,9 @@ export class UserController {
     getName(@Body() user : UserModel){
         return this.userService.getName(user);
     }
+    //-------TEST
+    @Get('/get-min-users')
+    getMinUser(){
+        return this.userService.getMinUser();
+    }
 }

@@ -33,4 +33,16 @@ export class ConsumptionService {
     }
 
 
+    async getMinMaxConsumption(){
+        
+        let query = 'SELECT consumption,id,date,idUserId FROM consumption_entity where consumption = (select max(consumption) from consumption_entity);';
+        this.consumptionEntity.query(query)
+        .then(response => console.log("MAX ",response));
+        query = 'SELECT consumption,id,date,idUserId FROM consumption_entity where consumption = (select min(consumption) from consumption_entity);';
+        this.consumptionEntity.query(query)
+        .then(response => console.log("MIN", response));
+
+    }
+
+
 }
