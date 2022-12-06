@@ -5,9 +5,11 @@ import { ConsumptionController } from './api/consumption/consumption.controller'
 import { UserModule } from './api/user/user.module';
 import { Module } from '@nestjs/common';
 import { connection } from './database/dbConfig';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [
+  imports: [ConfigModule.forRoot({
+    envFilePath : process.env.NODE_ENV === 'docker' ? '.env' : '.env.local'}),
     UserModule,
     ConsumptionModule,
     PaymentModule,
