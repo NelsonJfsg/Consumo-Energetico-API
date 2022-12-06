@@ -23,5 +23,14 @@ export class ConsumptionController {
         return this.consumptionService.getMinMaxConsumption();
     }
 
+    @Get('/get-all-consumptions')
+    getAllConsumptions(){
+        return this.consumptionService.getAllConsumptions();
+    }
+
+    @Post('/get-consumptions-by-client')
+    getConsumptionByClient(@Body() user: UserModel){
+        return this.consumptionService.getConsumptionByClient(user.id);
+    }
     
 }

@@ -2,6 +2,8 @@ import { Body, Controller, Post, Get } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 
 import { PaymentModel } from "../../model/paymentModel";
+import { ConsumptionController } from '../consumption/consumption.controller';
+import { consumptionModel } from 'src/model/consumptionModel';
 
 @Controller('/api/payment')
 export class PaymentController { 
@@ -12,7 +14,7 @@ export class PaymentController {
 
     @Post('/payConsume')
     payAnConsumption(@Body() paymentModel : PaymentModel){
-        this.paymentService.payAnConsumption(paymentModel);
+        //this.paymentService.payAnConsumption(paymentModel);
     }
 
     @Get('/get-paids')
@@ -25,6 +27,9 @@ export class PaymentController {
         return this.paymentService.getAllNoPaids();
     }
 
-
+    @Post('/test')
+    getConsumptionById(@Body() consumption : consumptionModel){
+        //return this.paymentService.payAnConsumption(consumption,);
+    }
 
 }

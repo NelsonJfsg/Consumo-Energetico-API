@@ -4,20 +4,20 @@
 - Se debe registrar un cliente con los datos definidos en la estructura de la base de datos. Nelson
 
 - Kevin
-LISTO-Los datos de registro del cliente deben estar validados; por ejemplo: si un campo es numerico solo numeros debe aceptar.
+- Los datos de registro del cliente deben estar validados; por ejemplo: si un campo es numerico solo numeros debe aceptar.
 
 ------- CONSUMPTION -------
 - Nelson
 - Se debe registrar el consumo energetico por cliente por periodo. Ej: Cliente "A" consumio: "155 Kw" en el periodo: "Fecha"
 
 - Nelson
-Se debe obtener un reporte general de todos los consumos.
+ - Se debe obtener un reporte general de todos los consumos.
 
 - Kevin
-LISTO-Se debe obtener un reporte el cual indique que usuario consumio mas Kw y quien consumio menos Kw.
+ - Se debe obtener un reporte el cual indique que usuario consumio mas Kw y quien consumio menos Kw.
 
 - Nelson
-Se debe obtener un reporte de detalles de consumo por cliente.
+ - Se debe obtener un reporte de detalles de consumo por cliente.
 
 
 ------- PAYMENT ----- 

@@ -50,4 +50,5 @@ export class UserController {
     getMinUser(){
         return this.userService.getMinUser();
     }
+
 }

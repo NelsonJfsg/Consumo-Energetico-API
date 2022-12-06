@@ -1,14 +1,16 @@
 //Nest
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { response } from 'express';
-import { Double, Repository } from 'typeorm';
+import { query, response } from 'express';
+import { createQueryBuilder, Double, Repository } from 'typeorm';
 
 //My imports
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
-import { UserEntity } from 'src/database/entity/userEntity';
 import { consumptionModel } from 'src/model/consumptionModel';
 import { UserModel } from 'src/model/create-user.dto';
+
+import { PaymentService } from "./../payment/payment.service";
+import { PaymentModel } from 'src/model/paymentModel';
 
 @Injectable()
 export class ConsumptionService { 
@@ -21,16 +23,13 @@ export class ConsumptionService {
 
         this.consumptionEntity.insert(consumption)
         .then((response) => {
+
             console.log(response);
         });
 
     }
 
-    async getConsumptionFromId(thisId : number) : Promise<ConsumptionEntity>{
-        return await this.consumptionEntity.findOneBy({
-            id : thisId
-        }).then();
-    }
+
 
 
     async getMinMaxConsumption(){
@@ -43,6 +42,21 @@ export class ConsumptionService {
         .then(response => console.log("MIN", response));
 
     }
+
+    async getAllConsumptions(){
+        return this.consumptionEntity.find();
+    }
+
+    async getConsumptionByClient(id : number){
+
+
+        let query = `SELECT * FROM consumption_entity INNER JOIN user_entity ON consumption_entity.idUserId = ${id} AND consumption_entity.idUserId = user_entity.id;`;
+        return await this.consumptionEntity.query(query)
+        .then(response => console.log(response));
+ 
+    }
+
+
 
 
 }
