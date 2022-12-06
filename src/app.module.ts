@@ -10,7 +10,7 @@ import { connection } from './database/dbConfig';
   imports: [
     UserModule,
     ConsumptionModule,
-    //PaymentModule,
+    PaymentModule,
     connection,
   ],
   controllers: [
