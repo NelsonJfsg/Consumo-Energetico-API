@@ -13,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     UserModule,
     ConsumptionModule,
     PaymentModule,
-    //PaymentModule,
+    PaymentModule,
     connection,
   ],
   controllers: [
