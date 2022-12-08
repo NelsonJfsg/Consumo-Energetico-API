@@ -7,6 +7,7 @@ export interface PaymentModel{
     id : number;
 
     idConsumption : number;
+    
     total : number;
 
     paid : boolean;

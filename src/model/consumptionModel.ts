@@ -1,11 +1,12 @@
 import { UserModel } from "./userModel";
-import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate, isInt, isString } from "class-validator";
+import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate, isInt, isString, IsDateString } from "class-validator";
 
 export class consumptionModel{
 
     //Atributes
     id : number;
-    @IsString()
+
+    @IsDateString()
     date : Date;
 
     @IsNumber()

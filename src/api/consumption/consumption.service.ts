@@ -11,21 +11,60 @@ import { UserModel } from 'src/model/create-user.dto';
 
 import { PaymentService } from "./../payment/payment.service";
 import { PaymentModel } from 'src/model/paymentModel';
+import { PaymentEntity } from 'src/database/entity/paymentEntity';
+import { UserService } from '../user/user.service';
+
 
 @Injectable()
 export class ConsumptionService { 
 
-    constructor(@InjectRepository(ConsumptionEntity) private consumptionEntity : Repository<consumptionModel>){
+    constructor(
+        @InjectRepository(ConsumptionEntity) private consumptionEntity : Repository<consumptionModel>,
+        private userService : UserService
+    ){
         
     }
 
-    registConsumption(consumption : consumptionModel){
+    async registConsumption(consumption : consumptionModel){
 
-        this.consumptionEntity.insert(consumption)
-        .then((response) => {
+        let consumptionValue = consumption.consumption;
 
-            console.log(response);
-        });
+        console.log(consumption.consumption);
+        let age 
+        
+        age = await this.userService.getAge(consumption.idUser).then(response => age = response);
+
+        if(consumptionValue <= 100){
+            consumptionValue *= 150;
+        }else{
+            if(consumptionValue >= 101 && consumptionValue <= 300){
+                consumptionValue *= 170
+            }else{
+                if(consumptionValue > 300){
+                    consumptionValue *= 190;
+                }
+            }
+        }
+
+        if(age > 50){
+            consumptionValue *= 0.90;
+        }
+
+        console.log("Consumption value: " + consumptionValue);
+        console.log("age: " + age);
+        
+
+
+
+
+
+
+
+
+
+
+        this.consumptionEntity.insert(consumption);
+        
 
     }
 

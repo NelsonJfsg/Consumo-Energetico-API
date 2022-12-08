@@ -28,7 +28,7 @@ export class UserController {
 
     @Post('/get-age')
     getAge(@Body() user : UserModel){
-        return this.userService.getAge(user);
+        return this.userService.getAge(user.id);
     }
 
     @Post('/get-id')

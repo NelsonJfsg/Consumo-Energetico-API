@@ -2,6 +2,7 @@
 import { Body, Controller, Post,Get } from '@nestjs/common';
 import { consumptionModel } from 'src/model/consumptionModel';
 import { UserModel } from 'src/model/create-user.dto';
+import { PaymentModel } from 'src/model/paymentModel';
 import { ConsumptionService } from './consumption.service';
 
 @Controller('api/consumption')

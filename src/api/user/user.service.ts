@@ -8,6 +8,7 @@ import { UserEntity, UserEntity as userEntity } from 'src/database/entity/userEn
 import { UserModel } from 'src/model/create-user.dto';
 import { query, response } from 'express';
 import { Console } from 'console';
+import { isAlpha } from 'class-validator';
 
 @Injectable()
 export class UserService {
@@ -20,6 +21,13 @@ export class UserService {
 
     //send information to db with user data.
     async createAnUser(user : UserEntity){
+
+        //Validations
+        if(true){
+
+        }
+
+
 
         //user recolected of db
         let dbUser : UserEntity = await this.userExists(user);
@@ -45,17 +53,22 @@ export class UserService {
         
     }
     
-    async getAge(user : UserModel){
+    async getAge(id : number){
 
-        let id;
-
-        id = await this.getId(user);
-        let query : string = `SELECT email, birthDay, CURDATE(),TIMESTAMPDIFF(YEAR,birthDay,CURDATE()) AS age FROM user_entity WHERE id = '${id}';`;
+        let age;
+        let query : string = `SELECT TIMESTAMPDIFF(YEAR,birthDay,CURDATE()) AS age FROM user_entity WHERE id = '${id}';`;
 
         console.log(id);
-        this.userEntity.query(query)
-        .then(response => console.log(response))
+        await this.userEntity.query(query)
+        .then(response => {
+            const [thisAge] = response;
+            age = thisAge.age;
+
+            console.log("Esta es la puta edad: " + age);
+        })
         .catch(err => console.log(err));
+
+        return age;
     }
 
     async getId(user : UserModel) : Promise<number>{
