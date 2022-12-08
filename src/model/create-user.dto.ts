@@ -1,4 +1,4 @@
-import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate, isInt } from "class-validator";
+import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate, isInt, IsAlpha } from "class-validator";
 
 export class UserModel{
 
@@ -6,6 +6,7 @@ export class UserModel{
     id : number;
 
     @IsString()
+    @IsAlpha()
     name : string;
 
     @IsEmail()
