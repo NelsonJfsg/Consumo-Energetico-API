@@ -20,7 +20,7 @@ export class ConsumptionService {
 
     constructor(
         @InjectRepository(ConsumptionEntity) private consumptionEntity : Repository<consumptionModel>,
-        private userService : UserService
+        private userService : UserService //private paymentService : PaymentService
     ){
         
     }
@@ -52,18 +52,11 @@ export class ConsumptionService {
 
         console.log("Consumption value: " + consumptionValue);
         console.log("age: " + age);
-        
-
-
-
-
-
-
-
-
-
 
         this.consumptionEntity.insert(consumption);
+
+
+        
         
 
     }
