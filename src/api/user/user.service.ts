@@ -64,7 +64,7 @@ export class UserService {
             const [thisAge] = response;
             age = thisAge.age;
 
-            console.log("Esta es la puta edad: " + age);
+            console.log("Esta es la edad: " + age);
         })
         .catch(err => console.log(err));
 

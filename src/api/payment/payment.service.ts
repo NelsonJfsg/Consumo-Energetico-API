@@ -1,7 +1,7 @@
+import { PaymentEntity } from './../../database/entity/paymentEntity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
-import { PaymentEntity } from 'src/database/entity/paymentEntity';
 import { UserEntity } from 'src/database/entity/userEntity';
 import { consumptionModel } from 'src/model/consumptionModel';
 import { PaymentModel } from 'src/model/paymentModel';
@@ -36,6 +36,14 @@ export class PaymentService {
 
         return this.paymentModel.insert(payment);
 
+    }
+
+    async create(id: number, total:number,paid:boolean){
+        return await this.paymentModel.save({
+            total: total,
+            idconsumption: id,
+            paid: paid
+        })
     }
 
 
@@ -77,4 +85,12 @@ export class PaymentService {
         return this.paymentModel.query(query)
         .then(response => console.log(response));
     }
+
+    async getAllPayments(){
+        return this.paymentModel.find({
+            select : ['id','idConsumption','paid','total']
+        })
+        .then(response => console.log(response));
+    }
+
 }

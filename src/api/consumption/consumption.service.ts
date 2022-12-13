@@ -1,17 +1,15 @@
+import { consumptionModel } from './../../model/consumptionModel';
+import { PaymentEntity } from './../../database/entity/paymentEntity';
 //Nest
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { query, response } from 'express';
 import { createQueryBuilder, Double, Repository } from 'typeorm';
-
 //My imports
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
-import { consumptionModel } from 'src/model/consumptionModel';
 import { UserModel } from 'src/model/create-user.dto';
-
 import { PaymentService } from "./../payment/payment.service";
 import { PaymentModel } from 'src/model/paymentModel';
-import { PaymentEntity } from 'src/database/entity/paymentEntity';
 import { UserService } from '../user/user.service';
 
 
@@ -20,14 +18,16 @@ export class ConsumptionService {
 
     constructor(
         @InjectRepository(ConsumptionEntity) private consumptionEntity : Repository<consumptionModel>,
-        private userService : UserService //private paymentService : PaymentService
+        private userService : UserService ,private paymentService : PaymentService
     ){
         
     }
 
-    async registConsumption(consumption : consumptionModel){
-
+    async registConsumption(consumption : consumptionModel):Promise<string | boolean>{
+        const date = new Date;
+        let fecha = new Date((await this.userService.getAge(consumption.idUser)))
         let consumptionValue = consumption.consumption;
+        let total =0;
 
         console.log(consumption.consumption);
         let age 
@@ -35,30 +35,29 @@ export class ConsumptionService {
         age = await this.userService.getAge(consumption.idUser).then(response => age = response);
 
         if(consumptionValue <= 100){
-            consumptionValue *= 150;
+            total =consumptionValue *= 150;
         }else{
             if(consumptionValue >= 101 && consumptionValue <= 300){
-                consumptionValue *= 170
+                total =consumptionValue *= 170
             }else{
                 if(consumptionValue > 300){
-                    consumptionValue *= 190;
+                    total =consumptionValue *= 190;
                 }
             }
         }
 
         if(age > 50){
-            consumptionValue *= 0.90;
+            total =consumptionValue *= 0.90;
         }
 
         console.log("Consumption value: " + consumptionValue);
         console.log("age: " + age);
-
         this.consumptionEntity.insert(consumption);
-
-
+        let paid= false;
+        await this.paymentService.create(consumption.id, total, paid);
+        return true
+        // idconsumption , total y paid 
         
-        
-
     }
 
 
@@ -76,7 +75,8 @@ export class ConsumptionService {
     }
 
     async getAllConsumptions(){
-        return this.consumptionEntity.find();
+        return this.consumptionEntity.find()
+        .then(response => console.log(response));;
     }
 
     async getConsumptionByClient(id : number){
@@ -87,8 +87,4 @@ export class ConsumptionService {
         .then(response => console.log(response));
  
     }
-
-
-
-
 }

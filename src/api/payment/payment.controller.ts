@@ -32,4 +32,8 @@ export class PaymentController {
         //return this.paymentService.payAnConsumption(consumption,);
     }
 
+    @Get('/get-all-payments')
+    getAllPayments(){
+        return this.paymentService.getAllPayments();
+    }
 }

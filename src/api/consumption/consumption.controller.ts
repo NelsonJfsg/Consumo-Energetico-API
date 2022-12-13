@@ -1,3 +1,4 @@
+import { PaymentService } from './../payment/payment.service';
 //Nest imports
 import { Body, Controller, Post,Get } from '@nestjs/common';
 import { consumptionModel } from 'src/model/consumptionModel';
@@ -15,7 +16,7 @@ export class ConsumptionController {
 
 
     @Post("/regist-consumption")
-    addConsume(@Body() consumption : consumptionModel){
+    addConsume(@Body() consumption : consumptionModel, payment: PaymentModel){
         this.consumptionService.registConsumption(consumption);
     }
 
