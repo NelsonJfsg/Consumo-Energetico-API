@@ -1,3 +1,5 @@
+import { PaymentEntity } from './../../database/entity/paymentEntity';
+import { PaymentService } from './../payment/payment.service';
 import { ConsumptionService } from './consumption.service';
 import { ConsumptionController } from './consumption.controller';
 
@@ -9,10 +11,10 @@ import { UserEntity } from 'src/database/entity/userEntity';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([ConsumptionEntity, UserEntity])],
+        TypeOrmModule.forFeature([ConsumptionEntity, UserEntity,PaymentEntity])],
     controllers: [
         ConsumptionController],
     providers: [
-        ConsumptionService, UserService],
+        ConsumptionService, UserService,PaymentService],
 })
 export class ConsumptionModule { }

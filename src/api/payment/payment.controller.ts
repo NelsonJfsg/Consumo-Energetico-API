@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Param } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 
 import { PaymentModel } from "../../model/paymentModel";
@@ -11,10 +11,20 @@ export class PaymentController {
     constructor(private paymentService : PaymentService){
 
     }
+    /*
+    @Post('/create-payment')
+    registPayment(@Body() payment : PaymentModel){
+        return this.paymentService.registPayment(payment);
+    }
 
     @Post('/payConsume')
     payAnConsumption(@Body() paymentModel : PaymentModel){
-        //this.paymentService.payAnConsumption(paymentModel);
+        this.paymentService.payAnConsumption(paymentModel);
+    }
+    */
+    @Get('/all')
+    getClient(){
+        return this.paymentService.getAll()
     }
 
     @Get('/get-paids')
@@ -31,5 +41,7 @@ export class PaymentController {
     getConsumptionById(@Body() consumption : consumptionModel){
         //return this.paymentService.payAnConsumption(consumption,);
     }
+
+
 
 }

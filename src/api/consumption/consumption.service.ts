@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { query, response } from 'express';
-import { createQueryBuilder, Double, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 //My imports
 import { ConsumptionEntity } from 'src/database/entity/consumptionEntity';
@@ -20,7 +20,8 @@ export class ConsumptionService {
 
     constructor(
         @InjectRepository(ConsumptionEntity) private consumptionEntity : Repository<consumptionModel>,
-        private userService : UserService //private paymentService : PaymentService
+        private userService : UserService,
+        private paymentService : PaymentService
     ){
         
     }
@@ -28,36 +29,44 @@ export class ConsumptionService {
     async registConsumption(consumption : consumptionModel){
 
         let consumptionValue = consumption.consumption;
-
+        let total = 0;
+        let paid =  consumption.paid
         console.log(consumption.consumption);
         let age 
         
         age = await this.userService.getAge(consumption.idUser).then(response => age = response);
 
+        
+        
+        
         if(consumptionValue <= 100){
-            consumptionValue *= 150;
+           total = consumptionValue *= 150;
         }else{
             if(consumptionValue >= 101 && consumptionValue <= 300){
-                consumptionValue *= 170
+                total =consumptionValue *= 170
             }else{
                 if(consumptionValue > 300){
-                    consumptionValue *= 190;
+                    total = consumptionValue *= 190;
                 }
             }
         }
 
         if(age > 50){
-            consumptionValue *= 0.90;
+            total =consumptionValue *= 0.90;
         }
 
         console.log("Consumption value: " + consumptionValue);
         console.log("age: " + age);
 
         this.consumptionEntity.insert(consumption);
-
-
+        const response = await this.consumptionEntity.save({
+            consumption: consumption.consumption,
+            idUser : consumption.idUser
+        })
         
-        
+
+        await this.paymentService.create(response.id, total,paid)
+        return true
 
     }
 

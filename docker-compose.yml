@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: nelson
+    container_name: api
     build:
       context: .
       target: development

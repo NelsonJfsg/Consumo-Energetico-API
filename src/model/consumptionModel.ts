@@ -1,5 +1,5 @@
 import { UserModel } from "./userModel";
-import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate, isInt, isString, IsDateString } from "class-validator";
+import { IsInt, IsEmail, IsDate, IsNumber, IsString, isEmail, isNumber, isDate, isInt, isString, IsDateString, IsBoolean } from "class-validator";
 
 export class consumptionModel{
 
@@ -14,5 +14,8 @@ export class consumptionModel{
 
     @IsNumber()
     idUser : number;
+
+    @IsBoolean()
+    paid: boolean;
 
 }
