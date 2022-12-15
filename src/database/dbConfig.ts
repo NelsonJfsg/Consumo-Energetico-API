@@ -9,7 +9,6 @@ import { UserEntity } from './entity/userEntity';
 
 export const connection = TypeOrmModule.forRoot({
 
-  
     type: 'mysql',
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT) ,
@@ -18,6 +17,8 @@ export const connection = TypeOrmModule.forRoot({
     database: process.env.DB_NAME,
     entities: [UserEntity, ConsumptionEntity, PaymentEntity],
     synchronize: true,
+  
+    
     
     /*
     
@@ -32,6 +33,7 @@ export const connection = TypeOrmModule.forRoot({
     synchronize : true,
     
     
+    
     */
-
+   
 });
