@@ -1,6 +1,6 @@
 import { PaymentService } from './../payment/payment.service';
 //Nest imports
-import { Body, Controller, Post,Get } from '@nestjs/common';
+import { Body, Controller, Post,Get, Param } from '@nestjs/common';
 import { consumptionModel } from 'src/model/consumptionModel';
 import { UserModel } from 'src/model/create-user.dto';
 import { PaymentModel } from 'src/model/paymentModel';
@@ -30,9 +30,9 @@ export class ConsumptionController {
         return this.consumptionService.getAllConsumptions();
     }
 
-    @Post('/get-consumptions-by-client')
-    getConsumptionByClient(@Body() user: UserModel){
-        return this.consumptionService.getConsumptionByClient(user.id);
+    @Get('/get-consumptions-by-id/:id')
+    getConsumptionByClient(@Param('id') id){
+        return this.consumptionService.getConsumptionByClient(id);
     }
     
 }

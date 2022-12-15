@@ -83,8 +83,7 @@ export class ConsumptionService {
 
 
         let query = `SELECT * FROM consumption_entity INNER JOIN user_entity ON consumption_entity.idUserId = ${id} AND consumption_entity.idUserId = user_entity.id;`;
-        return await this.consumptionEntity.query(query)
-        .then(response => console.log(response));
+        return await this.consumptionEntity.query(query);
  
     }
 }
