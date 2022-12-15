@@ -28,14 +28,10 @@ export class PaymentService {
         
     }
 
-    async payAnConsumption(payment : PaymentModel, consumption : consumptionModel){
+    async payAnConsumption( thisId: number, payment : PaymentModel){
 
-
-       
-
-
-        return this.paymentModel.insert(payment);
-
+        return await this.paymentModel.createQueryBuilder().update(payment).set({paid: true}).where("id = :id", {id: thisId }).execute()
+        
     }
 
     async create(id: number, total:number,paid:boolean){
@@ -50,47 +46,47 @@ export class PaymentService {
     async getAllPaids(){
 
 
-        this.paymentModel.find({
+        return await this.paymentModel.find({
             select : ['id','idConsumption','paid','total'],
             where : { paid : true
             },
         })
-        .then(response => console.log(response));
+        //.then(response => console.log(response));
     }
 
     async getAllNoPaids(){
 
 
-        this.paymentModel.find({
+        return await this.paymentModel.find({
             select : ['id','idConsumption','paid','total'],
             where : { paid : false
             },
         })
-        .then(response => console.log(response));
+        //.then(response => console.log(response));
     }
 
     async getAllPaidsASC(){
 
 
-        this.paymentModel.find({
+        return await this.paymentModel.find({
             select : ['id','idConsumption','paid','total'],
             order : { paid : "ASC"
             },
         })
-        .then(response => console.log(response));
+        //.then(response => console.log(response));
     }
 
     async getConsumptionById(id : number){
         const query = `SELECT * FROM consumption_entity WHERE consumption_entity.id = ${id};`;
-        return this.paymentModel.query(query)
-        .then(response => console.log(response));
+        return await this.paymentModel.query(query)
+        //.then(response => console.log(response));
     }
 
     async getAllPayments(){
-        return this.paymentModel.find({
+        return await this.paymentModel.find({
             select : ['id','idConsumption','paid','total']
         })
-        .then(response => console.log(response));
+        //.then(response => console.log(response));
     }
 
 }

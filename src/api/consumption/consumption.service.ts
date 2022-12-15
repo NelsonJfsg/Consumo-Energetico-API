@@ -82,7 +82,7 @@ export class ConsumptionService {
     async getConsumptionByClient(id : number){
 
 
-        let query = `SELECT * FROM consumption_entity INNER JOIN user_entity ON consumption_entity.idUserId = ${id} AND consumption_entity.idUserId = user_entity.id;`;
+        let query = `SELECT * FROM consumption_entity INNER JOIN user_entity ON consumption_entity.idUser = ${id} AND consumption_entity.idUser = user_entity.id;`;
         return await this.consumptionEntity.query(query)
         .then(response => console.log(response));
  

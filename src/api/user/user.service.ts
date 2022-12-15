@@ -24,7 +24,7 @@ export class UserService {
 
         //Validations
         if(true){
-
+            //best code
         }
 
 
@@ -37,9 +37,9 @@ export class UserService {
             console.log("user exists, please change email.");
         }else{
             console.log("User doesnt exists. You can use this email.");
-            this.userEntity.insert(user)
-            .then(response => console.log(response.identifiers))
-            .catch(err => console.log(err));
+            return await this.userEntity.insert(user)
+            //.then(response => console.log(response.identifiers))
+            //.catch(err => console.log(err));
         }
 
     }
@@ -90,10 +90,10 @@ export class UserService {
     async getAllUser(){
 
 
-        this.userEntity.find({
+        return this.userEntity.find({
             select : ['id','email','addres','name','phoneNumber','birthDay'],
         })
-        .then(response => console.log(response));
+        //.then(response => console.log(response));
 
 
         /*
@@ -115,11 +115,11 @@ export class UserService {
     async getMinUser(){
         
         let query = 'SELECT * FROM user_entity where id = (select max(id) from user_entity);';
-        this.userEntity.query(query)
-        .then(response => console.log("MAX ",response));
-        query = 'SELECT * FROM user_entity where id = (select min(id) from user_entity);';
-        this.userEntity.query(query)
-        .then(response => console.log("MIN", response));
+        return await this.userEntity.query(query)
+        //.then(response => console.log("MAX ",response));
+        //query = 'SELECT * FROM user_entity where id = (select min(id) from user_entity);';
+        //this.userEntity.query(query)
+        //.then(response => console.log("MIN", response));
 
     }
 }

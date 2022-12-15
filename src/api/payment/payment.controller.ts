@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Param } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 
 import { PaymentModel } from "../../model/paymentModel";
@@ -12,9 +12,9 @@ export class PaymentController {
 
     }
 
-    @Post('/payConsume')
-    payAnConsumption(@Body() paymentModel : PaymentModel){
-        //this.paymentService.payAnConsumption(paymentModel);
+    @Put('/payConsume/:id')
+    payAnConsumption(@Body()payment:PaymentModel, @Param('id') id){
+        this.paymentService.payAnConsumption(id,payment);
     }
 
     @Get('/get-paids')

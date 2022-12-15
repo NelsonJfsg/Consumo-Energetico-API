@@ -31,8 +31,8 @@ export class ConsumptionController {
     }
 
     @Post('/get-consumptions-by-client')
-    getConsumptionByClient(@Body() user: UserModel){
-        return this.consumptionService.getConsumptionByClient(user.id);
+    getConsumptionByClient(@Body() id: number){
+        return this.consumptionService.getConsumptionByClient(id);
     }
     
 }
